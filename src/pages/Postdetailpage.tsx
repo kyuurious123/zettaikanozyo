@@ -1,6 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getPostsByCategory } from "../utils/posts";
 import PasswordModal from "../components/PasswordModal";
 
 const allMdx = import.meta.glob("/src/posts/**/*.mdx") as Record<
@@ -17,7 +16,6 @@ export default function PostDetailPage() {
 
   const cat = category ?? "";
   const s = slug ?? "";
-  const sessionKey = `unlocked_${cat}_${s}`;
 
   useEffect(() => {
     const key = `/src/posts/${cat}/${s}.mdx`;
