@@ -1,4 +1,6 @@
 import { useState } from "react";
+import MD5 from "crypto-js/md5";
+
 
 interface PasswordModalProps {
   onSuccess: () => void;
@@ -10,15 +12,16 @@ export default function PasswordModal({ onSuccess, onClose, correctPassword }: P
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = () => {
-    if (input === correctPassword) {
-      onSuccess();
+    const handleSubmit = () => {
+    const hashed = MD5(input).toString();
+    if (hashed === correctPassword) {
+        onSuccess();
     } else {
-      setError(true);
-      setInput("");
-      setTimeout(() => setError(false), 1500);
+        setError(true);
+        setInput("");
+        setTimeout(() => setError(false), 1500);
     }
-  };
+    };
 
   return (
     <div
