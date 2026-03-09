@@ -57,12 +57,13 @@ export default function PasswordModal({ onSuccess, onClose, correctPassword }: P
             borderRadius: "12px",
           }}
         >
-          <p
-            className="text-white text-sm tracking-widest uppercase text-center"
-            style={{ textShadow: "0 1px 8px rgba(0,0,0,0.3)" }}
+          <a
+            className="text-white text-sm text-center underline"
+            target="_blank"
+            href="https://posty.pe/9c0gql"
           >
-            비밀번호 확인
-          </p>
+            https://posty.pe/9c0gql
+          </a>
 
           <input
             type="password"
@@ -86,7 +87,7 @@ export default function PasswordModal({ onSuccess, onClose, correctPassword }: P
 
           <button
             onClick={handleSubmit}
-            className="text-white text-xs tracking-widest uppercase py-2 transition-opacity hover:opacity-60"
+            className="text-white text-sm uppercase py-2 transition-opacity hover:opacity-60"
             style={{
               background: "rgba(255,255,255,0.15)",
               border: "1px solid rgba(255,255,255,0.25)",

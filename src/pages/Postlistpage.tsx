@@ -55,7 +55,7 @@ export default function PostListPage() {
                 >
                   <div className="flex items-center gap-3">
                     <h2
-                      className="text-5xl italic tracking-widest group-hover:opacity-60 transition-opacity"
+                      className="text-5xl italic group-hover:opacity-60 transition-opacity"
                     >
                       {post.title}/
                     </h2>
