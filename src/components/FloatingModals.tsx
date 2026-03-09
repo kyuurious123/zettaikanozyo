@@ -10,7 +10,7 @@ interface ModalProps {
   frozen: boolean;
 }
 
-function DraggableModal({ id, color, title, content, initialX, initialY, frozen }: ModalProps) {
+function DraggableModal({ color, title, content, initialX, initialY, frozen }: ModalProps) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
