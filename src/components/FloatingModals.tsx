@@ -108,6 +108,10 @@ const MODALS = [
         <p><span className="italic font-bold pr-2">ING</span><span>타카아키, 후루야 드림</span></p>
         <p><span className="italic font-bold pr-2">NG</span><span>후루야른</span></p>
       </div>
+      <div>
+        <img src="https://zettaikanozyo.web.app/banner.jpg" alt="" />
+        <p className="text-xs">https://zettaikanozyo.web.app/banner.jpg</p>
+      </div>
       </>
     ),
     initialX: isMobile ? 32 : window.innerWidth - 300 - 60,
