@@ -13,6 +13,7 @@ export default function PostDetailPage() {
   const [unlocked, setUnlocked] = useState(false);
   const [PostContent, setPostContent] = useState<React.ComponentType | null>(null);
   const [meta, setMeta] = useState<{ title: string; date: string; password?: string } | null>(null);
+  const isMobile = window.innerWidth < 768;
 
   const cat = category ?? "";
   const s = slug ?? "";
@@ -30,11 +31,9 @@ export default function PostDetailPage() {
         password: mod.frontmatter?.password,
       });
     });
-
   }, [cat, s]);
 
   const handleUnlock = () => {
-    // sessionStorage.setItem(sessionKey, "true");
     setUnlocked(true);
   };
 
@@ -51,22 +50,26 @@ export default function PostDetailPage() {
       {/* Password modal */}
       {isProtected && (
         <PasswordModal
-            correctPassword={meta!.password!}
-            onSuccess={handleUnlock}
-            onClose={() => navigate(`/posts/${cat}`)}  // ← 추가
+          correctPassword={meta!.password!}
+          onSuccess={handleUnlock}
+          onClose={() => navigate(`/posts/${cat}`)}
         />
-    )}
+      )}
 
       {/* Content area */}
       <main
-        className="fixed top-0 right-0 h-full z-30 overflow-y-auto"
-        style={{ width: "70vw", left: "30vw" }}
+        className="fixed top-0 h-full z-30 overflow-y-auto"
+        style={
+          isMobile
+            ? { left: 0, width: "100vw", paddingTop: "4rem" }
+            : { width: "70vw", left: "30vw" }
+        }
       >
-        <div className="px-12 py-16 max-w-3xl">
+        <div className="px-5 md:px-12 py-16 max-w-3xl">
           {/* Back button */}
           <button
             onClick={() => navigate(`/posts/${cat}`)}
-            className="text-xs  uppercase mb-10 transition-colors flex items-center gap-2"
+            className="text-xs uppercase mb-10 transition-colors flex items-center gap-2"
             style={{ background: "none", border: "none", cursor: "pointer" }}
           >
             ← 목록으로
@@ -74,10 +77,10 @@ export default function PostDetailPage() {
 
           {meta && (
             <>
-              <p className="text-xs  mb-3">{meta.date}</p>
+              <p className="text-xs mb-3">{meta.date}</p>
               <h1
                 className="text-2xl font-bold mb-10"
-                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4)", fontFamily: "'Georgia', serif" }}
+                style={{ fontFamily: "'Georgia', serif" }}
               >
                 {meta.title}
               </h1>

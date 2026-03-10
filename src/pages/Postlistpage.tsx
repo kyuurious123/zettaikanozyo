@@ -14,6 +14,7 @@ export default function PostListPage() {
   const { category } = useParams<{ category: string }>();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
+  const isMobile = window.innerWidth < 768;
 
   const cat = category ?? "";
   const label = CATEGORY_LABELS[cat] ?? cat;
@@ -31,14 +32,16 @@ export default function PostListPage() {
 
       {/* Content area */}
       <main
-        className="fixed top-0 right-0 h-full z-30 overflow-y-auto"
-        style={{ width: "70vw", left: "30vw" }}
+        className="fixed top-0 h-full z-30 overflow-y-auto"
+        style={
+          isMobile
+            ? { left: 0, width: "100vw", paddingTop: "4rem" }
+            : { width: "70vw", left: "30vw" }
+        }
       >
-        <div className="px-12 py-16 max-w-3xl">
+        <div className="px-5 md:px-12 py-16 max-w-3xl">
           {/* Category title */}
-          <h1
-            className="text-7xl font-bold mb-10 cate-text"
-          >
+          <h1 className="text-5xl md:text-7xl font-bold mb-10 cate-text">
             {label}
           </h1>
 
@@ -46,7 +49,7 @@ export default function PostListPage() {
           {posts.length === 0 ? (
             <p className="text-sm tracking-wider">Now coming . . .</p>
           ) : (
-            <ul className="flex gap-4">
+            <ul className="flex gap-4 flex-wrap">
               {posts.map((post) => (
                 <li
                   key={post.slug}
@@ -54,23 +57,9 @@ export default function PostListPage() {
                   className="flex items-baseline justify-between border-b border-white/15 py-5 cursor-pointer group"
                 >
                   <div className="flex items-center gap-3">
-                    <h2
-                      className="text-5xl italic group-hover:opacity-60 transition-opacity"
-                    >
+                    <h2 className="text-3xl md:text-5xl italic group-hover:opacity-60 transition-opacity">
                       {post.title}/
                     </h2>
-                    {/* {post.password && (
-                      <span
-                        className="text-xs tracking-wider px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "rgba(255,63,168,0.2)",
-                          border: "1px solid rgba(255,63,168,0.4)",
-                          color: "#FF3FA8",
-                        }}
-                      >
-                        18+
-                      </span>
-                    )} */}
                   </div>
                 </li>
               ))}

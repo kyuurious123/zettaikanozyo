@@ -10,7 +10,7 @@ export default function GuestbookPage() {
       {/* Content area */}
       <main
         className="fixed top-0 right-0 h-full z-30 overflow-y-auto"
-        style={{ width: "70vw", left: "40vw" }}
+        style={{ width: "70vw", left: "30vw" }}
       >
         <div className="px-12 py-16 max-w-3xl">
           <h1

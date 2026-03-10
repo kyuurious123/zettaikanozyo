@@ -4,17 +4,22 @@ interface ModalProps {
   id: number;
   color: string;
   title: string;
-  content: string;
+  content: React.ReactNode;
   initialX: number;
   initialY: number;
   frozen: boolean;
+  width: number;
+  height: number;
+  mobileWidth: number;
+  mobileHeight: number;
 }
 
-function DraggableModal({ color, title, content, initialX, initialY, frozen }: ModalProps) {
+function DraggableModal({ color, title, content, initialX, initialY, frozen, width, height, mobileWidth, mobileHeight }: ModalProps) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
   const modalRef = useRef<HTMLDivElement>(null);
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
@@ -42,6 +47,9 @@ function DraggableModal({ color, title, content, initialX, initialY, frozen }: M
     };
   };
 
+  const w = isMobile ? mobileWidth : width;
+  const h = isMobile ? mobileHeight : height;
+
   return (
     <div
       ref={modalRef}
@@ -50,66 +58,101 @@ function DraggableModal({ color, title, content, initialX, initialY, frozen }: M
       style={{
         left: pos.x,
         top: pos.y,
-        width: 200,
-        height: 240,
+        width: w,
+        height: h,
         zIndex: frozen ? 10 : 20,
         cursor: frozen ? "default" : "grab",
         userSelect: "none",
         pointerEvents: frozen ? "none" : "auto",
       }}
     >
-      
-      {/* Soft blob layer - 경계 없이 번지는 효과 */}
-        <div
+      {/* Soft blob layer */}
+      <div
         style={{
-            position: "absolute",
-            inset: "-10%",
-            background: color,
-            filter: "blur(10px)",
-            opacity: 0.75,
-            borderRadius: "5%",
+          position: "absolute",
+          inset: isMobile ? "-5%" : "-10%",
+          background: color,
+          filter: isMobile ? "blur(6px)" : "blur(10px)",
+          opacity: 0.75,
+          borderRadius: "5%",
         }}
-        />
-        {/* Content layer */}
-        <div
-        className="absolute inset-0 flex flex-col justify-start p-5"
+      />
+      {/* Content layer */}
+      <div
+        className="absolute inset-0 flex flex-col justify-start p-2"
         style={{
-            background: `radial-gradient(ellipse at 50% 50%, ${color}cc 0%, transparent %)`,
+          background: `radial-gradient(ellipse at 50% 50%, ${color}cc 0%, transparent 75%)`,
         }}
-        >
+      >
         <p className="text-sm font-bold uppercase mb-2 opacity-60 text-white">
           {title}
         </p>
-        <p className="leading-relaxed text-white opacity-90">{content}</p>
+        <div className="leading-relaxed text-white opacity-90">{content}</div>
       </div>
     </div>
   );
 }
+
+const isMobile = window.innerWidth < 768;
 
 const MODALS = [
   {
     id: 1,
     color: "#FF3FA8",
     title: "Profile",
-    content: "100의 드림상자 아직 공사중이에요",
-    initialX: 900,
-    initialY: 320,
+    content: (
+      <>
+      <div className="pb-4">
+        <p className="font-bold">100의 드림상자</p>
+        <a href="https://x.com/skittcn" target="_blank" className="underline">@skittcn</a>
+        <p><span className="italic font-bold pr-2">ING</span><span>타카아키, 후루야 드림</span></p>
+        <p><span className="italic font-bold pr-2">NG</span><span>후루야른</span></p>
+      </div>
+      </>
+    ),
+    initialX: isMobile ? 32 : window.innerWidth - 300 - 60,
+    initialY: isMobile ? window.innerHeight - 150 - 32 : 100,
+    width: 300,
+    height: 600,
+    mobileWidth: window.innerWidth - 64,
+    mobileHeight: 140,
   },
   {
     id: 2,
     color: "#3BFFEF",
-    title: "About",
-    content: "ES/DS 夢",
-    initialX: 1200,
-    initialY: 100,
+    title: "links",
+    content: (
+      <>
+      <div>
+        <a href="https://mokuba.tistory.com/">
+          <img src="https://r2.naru.pub/mokuba/banner03.png" alt="" className="rounded-sm" />
+        </a>
+        
+      </div>
+      </>
+    ),
+    initialX: isMobile ? 160 : 300,
+    initialY: isMobile ? 80 : 100,
+    width: 200,
+    height: 240,
+    mobileWidth: 120,
+    mobileHeight: 140,
   },
   {
     id: 3,
     color: "#3BFF6E",
     title: "Links",
-    content: "이웃할사람",
-    initialX: 960,
-    initialY: 700,
+    content: (
+      <>
+        <p>이웃할사람</p>
+      </>
+    ),
+    initialX: isMobile ? 80 : 960,
+    initialY: isMobile ? 400 : 700,
+    width: 200,
+    height: 240,
+    mobileWidth: 120,
+    mobileHeight: 140,
   },
 ];
 
