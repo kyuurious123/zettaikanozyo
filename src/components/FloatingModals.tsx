@@ -109,17 +109,17 @@ const MODALS = [
         <p><span className="italic font-bold pr-2">NG</span><span>후루야른</span></p>
       </div>
       <div>
-        <img src="https://zettaikanozyo.web.app/banner.jpg" alt="" />
-        <p className="text-xs">https://zettaikanozyo.web.app/banner.jpg</p>
+        <img src="https://zettaikanozyo.web.app/banner.jpg" alt="" className="rounded-lg w-50 mb-2" />
+        <p className="text-xs italic">https://zettaikanozyo.web.app/banner.jpg</p>
       </div>
       </>
     ),
     initialX: isMobile ? 32 : window.innerWidth - 300 - 60,
-    initialY: isMobile ? window.innerHeight - 150 - 32 : 100,
+    initialY: isMobile ? window.innerHeight - 240 - 32 : 100,
     width: 300,
     height: 600,
     mobileWidth: window.innerWidth - 64,
-    mobileHeight: 140,
+    mobileHeight: 240,
   },
   {
     id: 2,
@@ -129,7 +129,7 @@ const MODALS = [
       <>
       <div>
         <a href="https://mokuba.tistory.com/">
-          <img src="https://r2.naru.pub/mokuba/banner03.png" alt="" className="rounded-sm" />
+          <img src="https://r2.naru.pub/mokuba/banner03.png" alt="" className="rounded-lg" />
         </a>
         
       </div>
@@ -139,7 +139,7 @@ const MODALS = [
     initialY: isMobile ? 80 : 100,
     width: 200,
     height: 240,
-    mobileWidth: 120,
+    mobileWidth: 220,
     mobileHeight: 140,
   },
   {
@@ -152,7 +152,7 @@ const MODALS = [
       </>
     ),
     initialX: isMobile ? 80 : 960,
-    initialY: isMobile ? 400 : 700,
+    initialY: isMobile ? 540 : 700,
     width: 200,
     height: 240,
     mobileWidth: 120,
