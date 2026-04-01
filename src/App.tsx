@@ -6,6 +6,8 @@ import MainPage from "./pages/MainPage";
 import PostListPage from "./pages/PostListPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import GuestbookPage from "./pages/GuestbookPage";
+import AprilFoolsPage from "./pages/AprilFoolsPage";
+
 
 function Layout() {
   const location = useLocation();
@@ -28,15 +30,29 @@ function Layout() {
         <Route path="/posts/:category" element={<PostListPage />} />
         <Route path="/posts/:category/:slug" element={<PostDetailPage />} />
         <Route path="/guestbook" element={<GuestbookPage />} />
+        <Route path="/aprilfoolsday" element={<AprilFoolsPage />} />
+
       </Routes>
     </div>
   );
 }
 
+// export default function App() {
+//   return (
+//     <BrowserRouter>
+//       <Layout />
+//     </BrowserRouter>
+//   );
+// }
+
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Layout />
+      <Routes>
+        <Route path="/aprilfoolsday" element={<AprilFoolsPage />} />
+        <Route path="/*" element={<Layout />} />
+      </Routes>
     </BrowserRouter>
   );
 }
