@@ -117,7 +117,7 @@ const MODALS = [
     initialX: isMobile ? 32 : window.innerWidth - 300 - 60,
     initialY: isMobile ? window.innerHeight - 240 - 32 : 100,
     width: 300,
-    height: 600,
+    height: 540,
     mobileWidth: window.innerWidth - 64,
     mobileHeight: 240,
   },
@@ -129,14 +129,17 @@ const MODALS = [
       <>
       <div>
         <a href="https://mokuba.tistory.com/">
-          <img src="https://r2.naru.pub/mokuba/banner03.png" alt="" className="rounded-lg" />
+          <img src="https://r2.naru.pub/mokuba/banner03.png" alt="" className="rounded mb-2" />
+        </a>
+        <a href="https://kuzz11.dothome.co.kr">
+          <img src="https://kuzz11.dothome.co.kr/Banner.jpg" alt="" className="rounded" />
         </a>
         
       </div>
       </>
     ),
-    initialX: isMobile ? 160 : 300,
-    initialY: isMobile ? 80 : 100,
+    initialX: isMobile ? 160 : 720,
+    initialY: isMobile ? 80 : 480,
     width: 200,
     height: 240,
     mobileWidth: 220,
@@ -151,8 +154,8 @@ const MODALS = [
         <p>이웃할사람</p>
       </>
     ),
-    initialX: isMobile ? 80 : 960,
-    initialY: isMobile ? 540 : 700,
+    initialX: isMobile ? 80 : 900,
+    initialY: isMobile ? 540 : 640,
     width: 200,
     height: 240,
     mobileWidth: 120,
