@@ -134,6 +134,10 @@ const MODALS = [
         <a href="https://kuzz11.dothome.co.kr">
           <img src="https://kuzz11.dothome.co.kr/Banner.jpg" alt="" className="rounded" />
         </a>
+
+        <a href="https://090390.tistory.com/">
+          <img src="https://tistory1.daumcdn.net/tistory/6942364/skin/images/banner1.png" alt="" className="rounded" />
+        </a>
         
       </div>
       </>
